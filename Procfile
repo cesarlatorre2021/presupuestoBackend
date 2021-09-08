@@ -1,1 +1,1 @@
-web: java -jar -Dspring.profiles.active=pdn target/ProtectoPresupuesto-1.0.jar
+web: java -jar -Dspring.profiles.active=pdn target/ProyectoPresupuesto-1.0.jar
