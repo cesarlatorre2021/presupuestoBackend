@@ -20,8 +20,8 @@ public class PresupuestoService {
 	@Autowired
 	private PresupuestoRepository presupuestoRepository;
 	
-	public List<Presupuesto> getAll() {
-		return presupuestoRepository.listarPresupuesto();
+	public List<Presupuesto> getAll(String idUsuario) {
+		return presupuestoRepository.listarPresupuesto(idUsuario);
 	}
 	
 	public Optional<Presupuesto> getByIdPresupuesto(String idPresupuesto) {
@@ -45,7 +45,7 @@ public class PresupuestoService {
 		return presupuestoRepository.modify(presupuesto);
 	}
 	
-	public Sumatorias sumatorias() {
+	public Sumatorias sumatorias(String idUsuario) {
 		
 		Sumatorias sumatorias = new Sumatorias();
 		
@@ -53,11 +53,11 @@ public class PresupuestoService {
 		long sumaGasto = 0;
 		long diferencia = 0;
 		
-		for(int i = 0; i < getAll().size(); i++) {
-			if(getAll().get(i).getTipo().toUpperCase().equals(INGRESO)) {
-				sumaIngreso = sumaIngreso + getAll().get(i).getValor();
-			}else if(getAll().get(i).getTipo().toUpperCase().equals(GASTO)) {
-				sumaGasto = sumaGasto + getAll().get(i).getValor();
+		for(int i = 0; i < getAll(idUsuario).size(); i++) {
+			if(getAll(idUsuario).get(i).getTipo().toUpperCase().equals(INGRESO)) {
+				sumaIngreso = sumaIngreso + getAll(idUsuario).get(i).getValor();
+			}else if(getAll(idUsuario).get(i).getTipo().toUpperCase().equals(GASTO)) {
+				sumaGasto = sumaGasto + getAll(idUsuario).get(i).getValor();
 			}
 		}
 		
@@ -70,8 +70,8 @@ public class PresupuestoService {
 		return sumatorias;
 	}
 	
-	public List<Totales> listarTotales() {
-		return presupuestoRepository.listarTotales();
+	public List<Totales> listarTotales(String idUsuario) {
+		return presupuestoRepository.listarTotales(idUsuario);
 	}
 
 }

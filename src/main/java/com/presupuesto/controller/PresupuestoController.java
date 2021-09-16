@@ -24,18 +24,18 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 
 @RestController
-@CrossOrigin(origins = "http://presupuesto-app.s3-website.us-east-2.amazonaws.com")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("")
 public class PresupuestoController {
 	
 	@Autowired
     private PresupuestoService presupuestoService;
 	
-    @GetMapping("/lista")
+    @GetMapping("/lista/{idUsuario}")
     @ApiOperation("Enlista todas los activos fijos que tiene la empresa")
     @ApiResponse(code = 200, message = "OK")
-	public ResponseEntity<List<Presupuesto>> getAll(){	
-    	return new ResponseEntity<> (presupuestoService.getAll(), HttpStatus.OK);
+	public ResponseEntity<List<Presupuesto>> getAll(@PathVariable String idUsuario){	
+    	return new ResponseEntity<> (presupuestoService.getAll(idUsuario), HttpStatus.OK);
     }
     
     @PostMapping("/save")
@@ -62,17 +62,17 @@ public class PresupuestoController {
     	return new ResponseEntity<> (presupuestoService.modify(presupuesto), HttpStatus.OK);
 	}
     
-    @GetMapping("/sumatorias")
+    @GetMapping("/sumatorias/{idUsuario}")
     @ApiOperation("Permite modificar de la BD el registro de alguna area de la empresa")
-	public ResponseEntity<Sumatorias> sumatorias() {
-    	return new ResponseEntity<> (presupuestoService.sumatorias(), HttpStatus.OK);
+	public ResponseEntity<Sumatorias> sumatorias(@PathVariable String idUsuario) {
+    	return new ResponseEntity<> (presupuestoService.sumatorias(idUsuario), HttpStatus.OK);
 	}
     
-    @GetMapping("/lista/totales")
+    @GetMapping("/lista/totales/{idUsuario}")
     @ApiOperation("Enlista todas los activos fijos que tiene la empresa")
     @ApiResponse(code = 200, message = "OK")
-	public ResponseEntity<List<Totales>> getAllTotales(){	
-    	return new ResponseEntity<> (presupuestoService.listarTotales(), HttpStatus.OK);
+	public ResponseEntity<List<Totales>> getAllTotales(@PathVariable String idUsuario){	
+    	return new ResponseEntity<> (presupuestoService.listarTotales(idUsuario), HttpStatus.OK);
     }
     
 }

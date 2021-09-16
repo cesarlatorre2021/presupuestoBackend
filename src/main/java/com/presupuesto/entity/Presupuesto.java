@@ -20,6 +20,9 @@ public class Presupuesto {
 	private String descripcion;
 	private long valor;
 	
+	@Column(name = "ID_USUARIO")
+	private String idUsuario;
+	
 	public String getIdPresupuesto() {
 		return idPresupuesto;
 	}
@@ -66,6 +69,14 @@ public class Presupuesto {
 	
 	public void setValor(long valor) {
 		this.valor = valor;
+	}
+
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 	
 }

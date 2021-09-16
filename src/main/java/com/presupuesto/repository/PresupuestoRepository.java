@@ -8,11 +8,11 @@ import com.presupuesto.entity.Totales;
 
 public interface PresupuestoRepository {
 	
-	List<Presupuesto> listarPresupuesto();
+	List<Presupuesto> listarPresupuesto(String idUsuario);
 	Presupuesto save(Presupuesto presupuesto);
 	void delete(String idPresupuesto);
 	Optional<Presupuesto> getByIdPresupuesto(String idPresupuesto);
 	Presupuesto modify(Presupuesto presupuesto);
-	List<Totales> listarTotales();
+	List<Totales> listarTotales(String idUsuario);
 
 }

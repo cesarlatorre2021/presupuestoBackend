@@ -20,18 +20,21 @@ public interface PresupuestoCrud extends CrudRepository <Presupuesto, String>{
 			+ "           ,CATEGORIA"
 			+ "           ,DESCRIPCION"
 			+ "           ,VALOR "
+			+ "           ,ID_USUARIO"
 			+ "       FROM INFO_PRESUPUESTO"
+			+ "      WHERE ID_USUARIO = :idUsuario"
 			+ "      ORDER BY FECHA DESC", nativeQuery = true)
-	List<Presupuesto> listarPresupuesto();
+	List<Presupuesto> listarPresupuesto(@Param("idUsuario") String idUsuario);
 	
 	@Query(value = "SELECT CATEGORIA "
 			+ "           ,TRIM(TO_CHAR(SUM(VALOR), '$999,999,999')) TOTALGRUPO "
 			+ "           ,ROUND(100*(SUM(VALOR) / SUM(SUM(VALOR)) OVER ()),2) PORCENTAJE "
 			+ "       FROM INFO_PRESUPUESTO "
 			+ "      WHERE UPPER(TIPO) = 'GASTO' "
+			+ "        AND ID_USUARIO = :idUsuario"
 			+ "      GROUP BY CATEGORIA "
 			+ "      ORDER BY PORCENTAJE DESC", nativeQuery = true)
-	List<Totales> listarTotales();
+	List<Totales> listarTotales(@Param("idUsuario") String idUsuario);
 
 	@Modifying
 	@Transactional

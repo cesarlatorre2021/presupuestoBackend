@@ -16,10 +16,10 @@ public class PresupuestoRepositoryImpl implements PresupuestoRepository{
 	
 	@Autowired
 	PresupuestoCrud presupuestoCrud;
-
+	
 	@Override
-	public List<Presupuesto> listarPresupuesto() {
-		return presupuestoCrud.listarPresupuesto();
+	public List<Presupuesto> listarPresupuesto(String idUsuario) {
+		return presupuestoCrud.listarPresupuesto(idUsuario);
 	}
 	
 	@Override
@@ -51,8 +51,8 @@ public class PresupuestoRepositoryImpl implements PresupuestoRepository{
 	}
 
 	@Override
-	public List<Totales> listarTotales() {
-		return presupuestoCrud.listarTotales();
+	public List<Totales> listarTotales(String idUsuario) {
+		return presupuestoCrud.listarTotales(idUsuario);
 	}
 
 }

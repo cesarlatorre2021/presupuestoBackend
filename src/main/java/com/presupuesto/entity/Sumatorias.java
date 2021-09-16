@@ -26,9 +26,7 @@ public class Sumatorias {
 		return diferencia;
 	}
 	
-	public void setDiferencia(long diferencia) {
-		
-		
+	public void setDiferencia(long diferencia) {	
 		this.diferencia = diferencia;
 	}
 	
