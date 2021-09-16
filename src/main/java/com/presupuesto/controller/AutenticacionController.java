@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@CrossOrigin(origins = "http://presupuesto-app.s3-website.us-east-2.amazonaws.com")
+@CrossOrigin(origins = "http://presupuesto-app2.s3-website.us-east-2.amazonaws.com")
 @RequestMapping("")
 public class AutenticacionController {
 	

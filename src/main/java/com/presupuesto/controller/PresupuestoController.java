@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 
 @RestController
-@CrossOrigin(origins = "http://presupuesto-app.s3-website.us-east-2.amazonaws.com")
+@CrossOrigin(origins = "http://presupuesto-app2.s3-website.us-east-2.amazonaws.com")
 @RequestMapping("")
 public class PresupuestoController {
 	
