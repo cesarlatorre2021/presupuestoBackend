@@ -15,11 +15,10 @@ public class Autenticacion {
 	@Column(name = "ID_USUARIO")
 	private String idUsuario;
 	
-	@Column(name = "NOMBRE_USUARIO")
+	@Column(name = "USUARIO")
 	private String nombreUsuario;
 	
-	@Column(name = "CONTRASENIA"
-			+ "")
+	@Column(name = "PASSWORD")
 	private String password;
 	
 	@Column(name = "FECHA_CREACION")

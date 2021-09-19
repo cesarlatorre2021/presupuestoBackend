@@ -12,8 +12,8 @@ public interface AutenticacionCrud extends CrudRepository <Autenticacion, String
 	
 	@Query(value = "SELECT * "
 			+ "       FROM USUARIO "
-			+ "      WHERE NOMBRE_USUARIO = :usuario "
-			+ "        AND CONTRASENIA = :password ", nativeQuery = true)
+			+ "      WHERE USUARIO = :usuario "
+			+ "        AND PASSWORD = :password ", nativeQuery = true)
 	Optional<Autenticacion> autenticar(@Param("usuario") String usuario, @Param("password") String password);
 	
 }
