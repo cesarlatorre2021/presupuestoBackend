@@ -15,7 +15,7 @@ import com.presupuesto.service.RegistroService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://presupuesto-app2.s3-website.us-east-2.amazonaws.com")
 @RequestMapping("registro")
 public class RegistroController {
 	
