@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.presupuesto.entity.Presupuesto;
-import com.presupuesto.entity.Totales;
+import com.presupuesto.entity.TotalesGasto;
+import com.presupuesto.entity.TotalesIngreso;
 
 public interface PresupuestoRepository {
 	
@@ -13,6 +14,7 @@ public interface PresupuestoRepository {
 	void delete(String idPresupuesto);
 	Optional<Presupuesto> getByIdPresupuesto(String idPresupuesto);
 	Presupuesto modify(Presupuesto presupuesto);
-	List<Totales> listarTotales(String idUsuario);
+	List<TotalesGasto> listarTotalesGasto(String idUsuario);
+	List<TotalesIngreso> listarTotalesIngreso(String idUsuario);
 
 }

@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.presupuesto.crud.PresupuestoCrud;
 import com.presupuesto.entity.Presupuesto;
-import com.presupuesto.entity.Totales;
+import com.presupuesto.entity.TotalesGasto;
+import com.presupuesto.entity.TotalesIngreso;
 import com.presupuesto.repository.PresupuestoRepository;
 
 @Repository
@@ -51,8 +52,13 @@ public class PresupuestoRepositoryImpl implements PresupuestoRepository{
 	}
 
 	@Override
-	public List<Totales> listarTotales(String idUsuario) {
-		return presupuestoCrud.listarTotales(idUsuario);
+	public List<TotalesGasto> listarTotalesGasto(String idUsuario) {
+		return presupuestoCrud.listarTotalesGasto(idUsuario);
+	}
+
+	@Override
+	public List<TotalesIngreso> listarTotalesIngreso(String idUsuario) {
+		return presupuestoCrud.listarTotalesIngreso(idUsuario);
 	}
 
 }

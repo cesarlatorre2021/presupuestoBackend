@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.presupuesto.entity.Presupuesto;
 import com.presupuesto.entity.Sumatorias;
-import com.presupuesto.entity.Totales;
+import com.presupuesto.entity.TotalesGasto;
+import com.presupuesto.entity.TotalesIngreso;
 import com.presupuesto.repository.PresupuestoRepository;
 
 @Service
@@ -70,8 +71,12 @@ public class PresupuestoService {
 		return sumatorias;
 	}
 	
-	public List<Totales> listarTotales(String idUsuario) {
-		return presupuestoRepository.listarTotales(idUsuario);
+	public List<TotalesGasto> listarTotalesGasto(String idUsuario) {
+		return presupuestoRepository.listarTotalesGasto(idUsuario);
+	}
+	
+	public List<TotalesIngreso> listarTotalesIngreso(String idUsuario) {
+		return presupuestoRepository.listarTotalesIngreso(idUsuario);
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.presupuesto.entity;
 
-public interface Totales {
+public interface TotalesGasto {
 
     String getCategoria();	
 	String getTotalGrupo();

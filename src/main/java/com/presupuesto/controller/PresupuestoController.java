@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.presupuesto.entity.Presupuesto;
 import com.presupuesto.entity.Sumatorias;
-import com.presupuesto.entity.Totales;
+import com.presupuesto.entity.TotalesGasto;
+import com.presupuesto.entity.TotalesIngreso;
 import com.presupuesto.service.PresupuestoService;
 
 import io.swagger.annotations.ApiOperation;
@@ -25,6 +26,7 @@ import io.swagger.annotations.ApiResponse;
 
 @RestController
 @CrossOrigin(origins = "http://app-presupuesto.s3-website.us-east-2.amazonaws.com")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("")
 public class PresupuestoController {
 	
@@ -71,8 +73,15 @@ public class PresupuestoController {
     @GetMapping("/lista/totales/{idUsuario}")
     @ApiOperation("Enlista todas los activos fijos que tiene la empresa")
     @ApiResponse(code = 200, message = "OK")
-	public ResponseEntity<List<Totales>> getAllTotales(@PathVariable String idUsuario){	
-    	return new ResponseEntity<> (presupuestoService.listarTotales(idUsuario), HttpStatus.OK);
+	public ResponseEntity<List<TotalesGasto>> getAllTotalesGasto(@PathVariable String idUsuario){	
+    	return new ResponseEntity<> (presupuestoService.listarTotalesGasto(idUsuario), HttpStatus.OK);
+    }
+    
+    @GetMapping("/lista/totales/ingresos/{idUsuario}")
+    @ApiOperation("Enlista todas los activos fijos que tiene la empresa")
+    @ApiResponse(code = 200, message = "OK")
+	public ResponseEntity<List<TotalesIngreso>> getAllTotalesIngreso(@PathVariable String idUsuario){	
+    	return new ResponseEntity<> (presupuestoService.listarTotalesIngreso(idUsuario), HttpStatus.OK);
     }
     
 }

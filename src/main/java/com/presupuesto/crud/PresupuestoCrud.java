@@ -10,7 +10,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.presupuesto.entity.Presupuesto;
-import com.presupuesto.entity.Totales;
+import com.presupuesto.entity.TotalesGasto;
+import com.presupuesto.entity.TotalesIngreso;
 
 public interface PresupuestoCrud extends CrudRepository <Presupuesto, String>{
 	
@@ -34,7 +35,17 @@ public interface PresupuestoCrud extends CrudRepository <Presupuesto, String>{
 			+ "        AND ID_USUARIO = :idUsuario"
 			+ "      GROUP BY CATEGORIA "
 			+ "      ORDER BY PORCENTAJE DESC", nativeQuery = true)
-	List<Totales> listarTotales(@Param("idUsuario") String idUsuario);
+	List<TotalesGasto> listarTotalesGasto(@Param("idUsuario") String idUsuario);
+	
+	@Query(value = "SELECT CATEGORIA "
+			+ "           ,TRIM(TO_CHAR(SUM(VALOR), '$999,999,999')) TOTALGRUPO "
+			+ "           ,ROUND(100*(SUM(VALOR) / SUM(SUM(VALOR)) OVER ()),2) PORCENTAJE "
+			+ "       FROM INFO_PRESUPUESTO "
+			+ "      WHERE UPPER(TIPO) = 'INGRESO' "
+			+ "        AND ID_USUARIO = :idUsuario"
+			+ "      GROUP BY CATEGORIA "
+			+ "      ORDER BY PORCENTAJE DESC", nativeQuery = true)
+	List<TotalesIngreso> listarTotalesIngreso(@Param("idUsuario") String idUsuario);
 
 	@Modifying
 	@Transactional
