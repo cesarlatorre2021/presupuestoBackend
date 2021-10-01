@@ -28,7 +28,7 @@ public interface PresupuestoCrud extends CrudRepository <Presupuesto, String>{
 	List<Presupuesto> listarPresupuesto(@Param("idUsuario") String idUsuario);
 	
 	@Query(value = "SELECT ID_PRESUPUESTO "
-			+ "           ,TO_DATE(TO_CHAR(FECHA, 'DD/MM/YYYY'), 'DD/MM/YYYY') AS FECHA"
+			+ "           ,TO_DATE(TO_CHAR(FECHA, 'DD/MM/YYYY'), 'DD/MM/YYYY') + 1 AS FECHA"
 			+ "           ,TIPO"
 			+ "           ,CATEGORIA"
 			+ "           ,DESCRIPCION"
