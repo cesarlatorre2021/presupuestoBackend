@@ -24,6 +24,7 @@ public interface PresupuestoCrud extends CrudRepository <Presupuesto, String>{
 			+ "           ,ID_USUARIO"
 			+ "       FROM INFO_PRESUPUESTO"
 			+ "      WHERE ID_USUARIO = :idUsuario"
+			+ "        AND TO_CHAR(FECHA,'MM/YYYY') = TO_CHAR(CURRENT_DATE,'MM/YYYY') "
 			+ "      ORDER BY FECHA DESC", nativeQuery = true)
 	List<Presupuesto> listarPresupuesto(@Param("idUsuario") String idUsuario);
 	
