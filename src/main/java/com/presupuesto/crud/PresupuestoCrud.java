@@ -24,9 +24,21 @@ public interface PresupuestoCrud extends CrudRepository <Presupuesto, String>{
 			+ "           ,ID_USUARIO"
 			+ "       FROM INFO_PRESUPUESTO"
 			+ "      WHERE ID_USUARIO = :idUsuario"
-			+ "        AND TO_CHAR(FECHA,'MM/YYYY') = TO_CHAR(CURRENT_DATE,'MM/YYYY') "
 			+ "      ORDER BY FECHA DESC", nativeQuery = true)
 	List<Presupuesto> listarPresupuesto(@Param("idUsuario") String idUsuario);
+	
+	@Query(value = "SELECT ID_PRESUPUESTO "
+			+ "           ,TO_DATE(TO_CHAR(FECHA, 'DD/MM/YYYY'), 'DD/MM/YYYY') AS FECHA"
+			+ "           ,TIPO"
+			+ "           ,CATEGORIA"
+			+ "           ,DESCRIPCION"
+			+ "           ,VALOR "
+			+ "           ,ID_USUARIO"
+			+ "       FROM INFO_PRESUPUESTO"
+			+ "      WHERE ID_USUARIO = :idUsuario"
+			+ "        AND TO_CHAR(FECHA,'MM/YYYY') = TO_CHAR(CURRENT_DATE,'MM/YYYY') "
+			+ "      ORDER BY FECHA DESC", nativeQuery = true)
+	List<Presupuesto> listarPresupuestoXMes(@Param("idUsuario") String idUsuario);
 	
 	@Query(value = "SELECT CATEGORIA "
 			+ "           ,TRIM(TO_CHAR(SUM(VALOR), '$999,999,999')) TOTALGRUPO "

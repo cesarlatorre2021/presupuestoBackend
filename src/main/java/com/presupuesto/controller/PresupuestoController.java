@@ -37,7 +37,7 @@ public class PresupuestoController {
     @ApiOperation("Enlista todas los activos fijos que tiene la empresa")
     @ApiResponse(code = 200, message = "OK")
 	public ResponseEntity<List<Presupuesto>> getAll(@PathVariable String idUsuario){	
-    	return new ResponseEntity<> (presupuestoService.getAll(idUsuario), HttpStatus.OK);
+    	return new ResponseEntity<> (presupuestoService.listarPresupuestoXMes(idUsuario), HttpStatus.OK);
     }
     
     @PostMapping("/save")

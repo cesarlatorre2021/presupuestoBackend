@@ -21,8 +21,13 @@ public class PresupuestoService {
 	@Autowired
 	private PresupuestoRepository presupuestoRepository;
 	
-	public List<Presupuesto> getAll(String idUsuario) {
+	public List<Presupuesto> listarPresupuesto(String idUsuario) {
 		return presupuestoRepository.listarPresupuesto(idUsuario);
+	}
+	
+	
+	public List<Presupuesto> listarPresupuestoXMes(String idUsuario) {
+		return presupuestoRepository.listarPresupuestoXMes(idUsuario);
 	}
 	
 	public Optional<Presupuesto> getByIdPresupuesto(String idPresupuesto) {
@@ -54,11 +59,11 @@ public class PresupuestoService {
 		long sumaGasto = 0;
 		long diferencia = 0;
 		
-		for(int i = 0; i < getAll(idUsuario).size(); i++) {
-			if(getAll(idUsuario).get(i).getTipo().toUpperCase().equals(INGRESO)) {
-				sumaIngreso = sumaIngreso + getAll(idUsuario).get(i).getValor();
-			}else if(getAll(idUsuario).get(i).getTipo().toUpperCase().equals(GASTO)) {
-				sumaGasto = sumaGasto + getAll(idUsuario).get(i).getValor();
+		for(int i = 0; i < listarPresupuesto(idUsuario).size(); i++) {
+			if(listarPresupuesto(idUsuario).get(i).getTipo().toUpperCase().equals(INGRESO)) {
+				sumaIngreso = sumaIngreso + listarPresupuesto(idUsuario).get(i).getValor();
+			}else if(listarPresupuesto(idUsuario).get(i).getTipo().toUpperCase().equals(GASTO)) {
+				sumaGasto = sumaGasto + listarPresupuesto(idUsuario).get(i).getValor();
 			}
 		}
 		

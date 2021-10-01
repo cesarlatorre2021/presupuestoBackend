@@ -24,6 +24,11 @@ public class PresupuestoRepositoryImpl implements PresupuestoRepository{
 	}
 	
 	@Override
+	public List<Presupuesto> listarPresupuestoXMes(String idUsuario) {
+		return presupuestoCrud.listarPresupuestoXMes(idUsuario);
+	}
+	
+	@Override
 	public Presupuesto save(Presupuesto presupuesto) {
 		return presupuestoCrud.save(presupuesto);
 	}
@@ -60,5 +65,6 @@ public class PresupuestoRepositoryImpl implements PresupuestoRepository{
 	public List<TotalesIngreso> listarTotalesIngreso(String idUsuario) {
 		return presupuestoCrud.listarTotalesIngreso(idUsuario);
 	}
+
 
 }
