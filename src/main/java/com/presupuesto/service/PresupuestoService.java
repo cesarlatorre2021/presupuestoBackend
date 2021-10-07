@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.presupuesto.entity.Presupuesto;
 import com.presupuesto.entity.Sumatorias;
+import com.presupuesto.entity.SumatoriasMes;
 import com.presupuesto.entity.TotalesGasto;
 import com.presupuesto.entity.TotalesIngreso;
 import com.presupuesto.repository.PresupuestoRepository;
@@ -26,8 +27,8 @@ public class PresupuestoService {
 	}
 	
 	
-	public List<Presupuesto> listarPresupuestoXMes(String idUsuario) {
-		return presupuestoRepository.listarPresupuestoXMes(idUsuario);
+	public List<Presupuesto> listarPresupuestoXMes(String idUsuario, String mesAnio) {
+		return presupuestoRepository.listarPresupuestoXMes(idUsuario, mesAnio);
 	}
 	
 	public Optional<Presupuesto> getByIdPresupuesto(String idPresupuesto) {
@@ -64,6 +65,31 @@ public class PresupuestoService {
 				sumaIngreso = sumaIngreso + listarPresupuesto(idUsuario).get(i).getValor();
 			}else if(listarPresupuesto(idUsuario).get(i).getTipo().toUpperCase().equals(GASTO)) {
 				sumaGasto = sumaGasto + listarPresupuesto(idUsuario).get(i).getValor();
+			}
+		}
+		
+		diferencia = (sumaIngreso - sumaGasto);
+		
+		sumatorias.setSumaIngresos(sumaIngreso);
+		sumatorias.setSumaGastos(sumaGasto);
+		sumatorias.setDiferencia(diferencia);
+		
+		return sumatorias;
+	}
+	
+	public SumatoriasMes sumatoriasMes(String idUsuario,String mesAnio) {
+		
+		SumatoriasMes sumatorias = new SumatoriasMes();
+		
+		long sumaIngreso = 0;
+		long sumaGasto = 0;
+		long diferencia = 0;
+		
+		for(int i = 0; i < listarPresupuestoXMes(idUsuario,mesAnio).size(); i++) {
+			if(listarPresupuestoXMes(idUsuario,mesAnio).get(i).getTipo().toUpperCase().equals(INGRESO)) {
+				sumaIngreso = sumaIngreso + listarPresupuestoXMes(idUsuario,mesAnio).get(i).getValor();
+			}else if(listarPresupuestoXMes(idUsuario,mesAnio).get(i).getTipo().toUpperCase().equals(GASTO)) {
+				sumaGasto = sumaGasto + listarPresupuestoXMes(idUsuario,mesAnio).get(i).getValor();
 			}
 		}
 		

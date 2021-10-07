@@ -10,7 +10,7 @@ import com.presupuesto.entity.TotalesIngreso;
 public interface PresupuestoRepository {
 	
 	List<Presupuesto> listarPresupuesto(String idUsuario);
-	List<Presupuesto> listarPresupuestoXMes(String idUsuario);
+	List<Presupuesto> listarPresupuestoXMes(String idUsuario, String mesAnio);
 	Presupuesto save(Presupuesto presupuesto);
 	void delete(String idPresupuesto);
 	Optional<Presupuesto> getByIdPresupuesto(String idPresupuesto);

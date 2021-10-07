@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.presupuesto.entity.Presupuesto;
 import com.presupuesto.entity.Sumatorias;
+import com.presupuesto.entity.SumatoriasMes;
 import com.presupuesto.entity.TotalesGasto;
 import com.presupuesto.entity.TotalesIngreso;
 import com.presupuesto.service.PresupuestoService;
@@ -25,19 +26,20 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 
 @RestController
-@CrossOrigin(origins = "http://app-presupuesto.s3-website.us-east-2.amazonaws.com")
-//@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://app-presupuesto.s3-website.us-east-2.amazonaws.com")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("")
 public class PresupuestoController {
 	
 	@Autowired
     private PresupuestoService presupuestoService;
 	
-    @GetMapping("/lista/{idUsuario}")
+    @GetMapping("/lista/{idUsuario}/{mesAnio}")
     @ApiOperation("Enlista todas los activos fijos que tiene la empresa")
     @ApiResponse(code = 200, message = "OK")
-	public ResponseEntity<List<Presupuesto>> getAll(@PathVariable String idUsuario){	
-    	return new ResponseEntity<> (presupuestoService.listarPresupuestoXMes(idUsuario), HttpStatus.OK);
+	public ResponseEntity<List<Presupuesto>> getAll(@PathVariable String idUsuario, @PathVariable(value = "mesAnio", required = false) String mesAnio){
+    	System.out.println("Fecha: " + mesAnio);
+    	return new ResponseEntity<> (presupuestoService.listarPresupuestoXMes(idUsuario,mesAnio), HttpStatus.OK);
     }
     
     @PostMapping("/save")
@@ -68,6 +70,12 @@ public class PresupuestoController {
     @ApiOperation("Permite modificar de la BD el registro de alguna area de la empresa")
 	public ResponseEntity<Sumatorias> sumatorias(@PathVariable String idUsuario) {
     	return new ResponseEntity<> (presupuestoService.sumatorias(idUsuario), HttpStatus.OK);
+	}
+    
+    @GetMapping("/sumatoriasMes/{idUsuario}/{mesAnio}")
+    @ApiOperation("Permite modificar de la BD el registro de alguna area de la empresa")
+	public ResponseEntity<SumatoriasMes> sumatoriasMes(@PathVariable String idUsuario, @PathVariable(value = "mesAnio", required = false) String mesAnio) {
+    	return new ResponseEntity<> (presupuestoService.sumatoriasMes(idUsuario, mesAnio), HttpStatus.OK);
 	}
     
     @GetMapping("/lista/totales/{idUsuario}")
