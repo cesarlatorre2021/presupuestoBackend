@@ -15,7 +15,7 @@ public interface PresupuestoRepository {
 	void delete(String idPresupuesto);
 	Optional<Presupuesto> getByIdPresupuesto(String idPresupuesto);
 	Presupuesto modify(Presupuesto presupuesto);
-	List<TotalesGasto> listarTotalesGasto(String idUsuario);
+	List<TotalesGasto> listarTotalesGasto(String idUsuario, String fechaInicial, String fechaFinal);
 	List<TotalesIngreso> listarTotalesIngreso(String idUsuario);
-
+	
 }

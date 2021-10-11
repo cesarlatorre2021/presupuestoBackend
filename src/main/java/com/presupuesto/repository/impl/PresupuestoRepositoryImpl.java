@@ -57,8 +57,8 @@ public class PresupuestoRepositoryImpl implements PresupuestoRepository{
 	}
 
 	@Override
-	public List<TotalesGasto> listarTotalesGasto(String idUsuario) {
-		return presupuestoCrud.listarTotalesGasto(idUsuario);
+	public List<TotalesGasto> listarTotalesGasto(String idUsuario, String fechaInicial, String fechaFinal) {
+		return presupuestoCrud.listarTotalesGasto(idUsuario, fechaInicial, fechaFinal);
 	}
 
 	@Override

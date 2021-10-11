@@ -78,11 +78,13 @@ public class PresupuestoController {
     	return new ResponseEntity<> (presupuestoService.sumatoriasMes(idUsuario, mesAnio), HttpStatus.OK);
 	}
     
-    @GetMapping("/lista/totales/{idUsuario}")
+    @GetMapping("/lista/totales/{idUsuario}/{fechaInicial}/{fechaFinal}")
     @ApiOperation("Enlista todas los activos fijos que tiene la empresa")
     @ApiResponse(code = 200, message = "OK")
-	public ResponseEntity<List<TotalesGasto>> getAllTotalesGasto(@PathVariable String idUsuario){	
-    	return new ResponseEntity<> (presupuestoService.listarTotalesGasto(idUsuario), HttpStatus.OK);
+	public ResponseEntity<List<TotalesGasto>> getAllTotalesGasto(@PathVariable String idUsuario
+													     	, @PathVariable(value = "fechaInicial", required = false) String fechaInicial
+															, @PathVariable(value = "fechaFinal", required = false) String fechaFinal){	
+    	return new ResponseEntity<> (presupuestoService.listarTotalesGasto(idUsuario,fechaInicial,fechaFinal), HttpStatus.OK);
     }
     
     @GetMapping("/lista/totales/ingresos/{idUsuario}")

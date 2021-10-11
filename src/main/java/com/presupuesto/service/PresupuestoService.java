@@ -102,8 +102,8 @@ public class PresupuestoService {
 		return sumatorias;
 	}
 	
-	public List<TotalesGasto> listarTotalesGasto(String idUsuario) {
-		return presupuestoRepository.listarTotalesGasto(idUsuario);
+	public List<TotalesGasto> listarTotalesGasto(String idUsuario, String fechaInicial, String fechaFinal) {
+		return presupuestoRepository.listarTotalesGasto(idUsuario, fechaInicial, fechaFinal);
 	}
 	
 	public List<TotalesIngreso> listarTotalesIngreso(String idUsuario) {

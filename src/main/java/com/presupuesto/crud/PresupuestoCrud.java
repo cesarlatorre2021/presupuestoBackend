@@ -47,9 +47,12 @@ public interface PresupuestoCrud extends CrudRepository <Presupuesto, String>{
 			+ "       FROM INFO_PRESUPUESTO "
 			+ "      WHERE UPPER(TIPO) = 'GASTO' "
 			+ "        AND ID_USUARIO = :idUsuario"
+			+ "        AND FECHA BETWEEN TO_DATE(:fechaInicial,'DD-MM-YYYY') AND TO_DATE(:fechaFinal,'DD-MM-YYYY')"
 			+ "      GROUP BY CATEGORIA "
 			+ "      ORDER BY PORCENTAJE DESC", nativeQuery = true)
-	List<TotalesGasto> listarTotalesGasto(@Param("idUsuario") String idUsuario);
+	List<TotalesGasto> listarTotalesGasto(@Param("idUsuario") String idUsuario,
+										  @Param("fechaInicial") String fechaInicial,
+	                                      @Param("fechaFinal") String fechaFinal);
 	
 	@Query(value = "SELECT CATEGORIA "
 			+ "           ,TRIM(TO_CHAR(SUM(VALOR), '$999,999,999')) TOTALGRUPO "
