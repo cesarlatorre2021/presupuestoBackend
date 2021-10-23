@@ -20,4 +20,9 @@ public class AutenticacionRepositoryImpl implements AutenticacionRepository {
 		return autenticacionCrud.autenticar(usuario, password);
 	}
 
+	@Override
+	public Autenticacion nombreUsuario(String idUsuario) {
+		return autenticacionCrud.nombreUsuario(idUsuario);
+	}
+
 }

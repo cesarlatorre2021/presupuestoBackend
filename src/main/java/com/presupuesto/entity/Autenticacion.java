@@ -10,17 +10,23 @@ import javax.persistence.Table;
 @Entity()
 @Table(name = "USUARIO")
 public class Autenticacion {
-	
+
 	@Id
 	@Column(name = "ID_USUARIO")
 	private String idUsuario;
-	
+
 	@Column(name = "USUARIO")
 	private String nombreUsuario;
-	
+
+	@Column(name = "PRIMER_NOMBRE")
+	private String primerNombre;
+
+	@Column(name = "PRIMER_APELLIDO")
+	private String primerApellido;
+
 	@Column(name = "PASSWORD")
 	private String password;
-	
+
 	@Column(name = "FECHA_CREACION")
 	private Date fechaCreacion;
 
@@ -66,5 +72,21 @@ public class Autenticacion {
 	public void setFechaModificacion(Date fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
-	
+
+	public String getPrimerNombre() {
+		return primerNombre;
+	}
+
+	public void setPrimerNombre(String primerNombre) {
+		this.primerNombre = primerNombre;
+	}
+
+	public String getPrimerApellido() {
+		return primerApellido;
+	}
+
+	public void setPrimerApellido(String primerApellido) {
+		this.primerApellido = primerApellido;
+	}
+
 }

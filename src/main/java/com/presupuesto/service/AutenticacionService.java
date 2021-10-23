@@ -3,6 +3,7 @@ package com.presupuesto.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.presupuesto.entity.Autenticacion;
 import com.presupuesto.entity.Notificacion;
 import com.presupuesto.repository.AutenticacionRepository;
 
@@ -27,6 +28,10 @@ public class AutenticacionService {
 		}
 		
 		return notificacion;
+	}
+	
+	public Autenticacion nombreUsuario(String idUsuario) {
+		return autenticacionRepository.nombreUsuario(idUsuario);
 	}
 
 }
