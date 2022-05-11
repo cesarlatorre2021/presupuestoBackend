@@ -15,8 +15,8 @@ import com.presupuesto.service.RegistroService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@CrossOrigin(origins = "http://app-presupuesto.s3-website.us-east-2.amazonaws.com")
-//@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://app-presupuesto.s3-website.us-east-2.amazonaws.com")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("registro")
 public class RegistroController {
 	
@@ -24,7 +24,7 @@ public class RegistroController {
 	RegistroService registroService;
 	
     @PostMapping("/save")
-    @ApiOperation("Guarda en la BD una nueva area de la empresa")
+    @ApiOperation("Guarda en la BD el registo de un nuevo usuario")
 	public ResponseEntity<Registro> save(@RequestBody Registro registro) {
 		return new ResponseEntity<> (registroService.save(registro), HttpStatus.CREATED);
 	}

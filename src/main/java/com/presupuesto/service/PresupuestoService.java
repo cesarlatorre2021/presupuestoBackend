@@ -18,7 +18,13 @@ public class PresupuestoService {
 	
 	static final String INGRESO = "INGRESO";
 	static final String GASTO = "GASTO";
-	
+	private long sumaIngreso;
+	private long sumaGasto;
+	private long diferencia;
+	private long sumaIngresoMes;
+	private long sumaGastoMes;
+	private long diferenciaMes;
+		
 	@Autowired
 	private PresupuestoRepository presupuestoRepository;
 	
@@ -54,11 +60,11 @@ public class PresupuestoService {
 	
 	public Sumatorias sumatorias(String idUsuario) {
 		
-		Sumatorias sumatorias = new Sumatorias();
+		sumaIngreso = 0;
+		sumaGasto = 0;
+		diferencia = 0;
 		
-		long sumaIngreso = 0;
-		long sumaGasto = 0;
-		long diferencia = 0;
+		Sumatorias sumatorias = new Sumatorias();
 		
 		for(int i = 0; i < listarPresupuesto(idUsuario).size(); i++) {
 			if(listarPresupuesto(idUsuario).get(i).getTipo().toUpperCase().equals(INGRESO)) {
@@ -79,25 +85,25 @@ public class PresupuestoService {
 	
 	public SumatoriasMes sumatoriasMes(String idUsuario,String mesAnio) {
 		
+		sumaIngresoMes = 0;
+		sumaGastoMes = 0;
+		diferenciaMes = 0;
+		
 		SumatoriasMes sumatorias = new SumatoriasMes();
-		
-		long sumaIngreso = 0;
-		long sumaGasto = 0;
-		long diferencia = 0;
-		
+	
 		for(int i = 0; i < listarPresupuestoXMes(idUsuario,mesAnio).size(); i++) {
 			if(listarPresupuestoXMes(idUsuario,mesAnio).get(i).getTipo().toUpperCase().equals(INGRESO)) {
-				sumaIngreso = sumaIngreso + listarPresupuestoXMes(idUsuario,mesAnio).get(i).getValor();
+				sumaIngresoMes = sumaIngresoMes + listarPresupuestoXMes(idUsuario,mesAnio).get(i).getValor();
 			}else if(listarPresupuestoXMes(idUsuario,mesAnio).get(i).getTipo().toUpperCase().equals(GASTO)) {
-				sumaGasto = sumaGasto + listarPresupuestoXMes(idUsuario,mesAnio).get(i).getValor();
+				sumaGastoMes = sumaGastoMes + listarPresupuestoXMes(idUsuario,mesAnio).get(i).getValor();
 			}
 		}
 		
-		diferencia = (sumaIngreso - sumaGasto);
+		diferenciaMes = (sumaIngresoMes - sumaGastoMes);
 		
-		sumatorias.setSumaIngresos(sumaIngreso);
-		sumatorias.setSumaGastos(sumaGasto);
-		sumatorias.setDiferencia(diferencia);
+		sumatorias.setSumaIngresos(sumaIngresoMes);
+		sumatorias.setSumaGastos(sumaGastoMes);
+		sumatorias.setDiferencia(diferenciaMes);
 		
 		return sumatorias;
 	}
